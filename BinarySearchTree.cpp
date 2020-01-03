@@ -7,6 +7,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 // **Constructors **
 
 //Empty tree constructor
@@ -16,7 +18,7 @@ BinarySearchTree::BinarySearchTree()
 }
 
 //Single word tree constructor
-BinarySearchTree::BinarySearchTree(std::string word)
+BinarySearchTree::BinarySearchTree(string word)
 {
 	root = new Node;
 	root->word = word;
@@ -32,7 +34,7 @@ BinarySearchTree::BinarySearchTree(const BinarySearchTree &rhs)
 
 
 //Vector constructor
-BinarySearchTree::BinarySearchTree(const std::vector<std::string> &words)
+BinarySearchTree::BinarySearchTree(const vector<string> &words)
 {
 	for(int loop = 0; loop<words.size(); loop++){
 		insert(words[loop]);
@@ -76,7 +78,7 @@ void BinarySearchTree::destructorHelper(Node *rem)
 // **Methods**
 
 //Creates new node
-Node* BinarySearchTree::createNode(std::string word)
+Node* BinarySearchTree::createNode(string word)
 {
 	Node *node = new Node;
 	node->word = word;
@@ -85,13 +87,13 @@ Node* BinarySearchTree::createNode(std::string word)
 }
 
 //Inserts new word to tree
-void BinarySearchTree::insert(std::string word)
+void BinarySearchTree::insert(string word)
 {
 	insertHelper(word, root);
 }
 
 //Insert helper function
-void BinarySearchTree::insertHelper(std::string word, Node *node)
+void BinarySearchTree::insertHelper(string word, Node *node)
 {
 	if(root == nullptr || root->word == ""){
 		root = createNode(word);
@@ -113,14 +115,14 @@ void BinarySearchTree::insertHelper(std::string word, Node *node)
 }
 
 //Returns true if word exists in the tree
-bool BinarySearchTree::exists(std::string word) 
+bool BinarySearchTree::exists(string word) 
 {
 	bool exist = existsHelper(word, root);
 	return exist;
 }
 
 //Exists helper function
-bool BinarySearchTree::existsHelper(std::string word, Node *node)
+bool BinarySearchTree::existsHelper(string word, Node *node)
 {
 	if(node == nullptr){
 		return false;
@@ -139,14 +141,14 @@ bool BinarySearchTree::existsHelper(std::string word, Node *node)
 // *Printing functions*
 
 //Prints words inorder + prints number of times word occurs
-std::string BinarySearchTree::inorderCount() 
+string BinarySearchTree::inorderCount() 
 {
-	std::string words = inorderCountHelper(root);
+	string words = inorderCountHelper(root);
 	return words;
 }
 
 //inorderCount helper function
-std::string BinarySearchTree::inorderCountHelper(Node *root)
+string BinarySearchTree::inorderCountHelper(Node *root)
 {
 	if (root == nullptr)
 	{
@@ -154,15 +156,15 @@ std::string BinarySearchTree::inorderCountHelper(Node *root)
 	}
 	else
 	{
-		return inorderCountHelper(root->left) + root->word + ": " + std:: to_string(root->count) + "\n" + inorderCountHelper(root->right);
+		return inorderCountHelper(root->left) + root->word + ": " + to_string(root->count) + "\n" + inorderCountHelper(root->right);
 	}
 }
 
 
 //Prints words inorder
-std::string BinarySearchTree::inorder()
+string BinarySearchTree::inorder()
 {
-	std::string words = inorderHelper(root);
+	string words = inorderHelper(root);
 	if(words.length() >= 1)
 	{
 		words.pop_back(); // Remove final space.
@@ -171,7 +173,7 @@ std::string BinarySearchTree::inorder()
 }
 
 //Inorder helper function
-std::string BinarySearchTree::inorderHelper(Node *root)
+string BinarySearchTree::inorderHelper(Node *root)
 {
 	if(root == nullptr)
 	{
@@ -184,9 +186,9 @@ std::string BinarySearchTree::inorderHelper(Node *root)
 }
 
 //Prints words preorder
-std::string BinarySearchTree::preorder()
+string BinarySearchTree::preorder()
 {
-	std::string words = preorderHelper(root);
+	string words = preorderHelper(root);
 	if(words.length() >= 1)
 	{
 		words.pop_back(); // Remove final space.
@@ -195,7 +197,7 @@ std::string BinarySearchTree::preorder()
 }
 
 //Preorder helper function
-std::string BinarySearchTree::preorderHelper(Node *root){
+string BinarySearchTree::preorderHelper(Node *root){
 	
 	if(root == nullptr)
 	{
@@ -209,9 +211,9 @@ std::string BinarySearchTree::preorderHelper(Node *root){
 }
 
 //Prints words postorder
-std::string BinarySearchTree::postorder()
+string BinarySearchTree::postorder()
 {
-	std::string words = postorderHelper(root);
+	string words = postorderHelper(root);
 	if(words.length() >= 1)
 	{
 		words.pop_back(); // Remove final space.
@@ -220,7 +222,7 @@ std::string BinarySearchTree::postorder()
 }
 
 //Postorder helper function
-std::string BinarySearchTree::postorderHelper(Node *root){
+string BinarySearchTree::postorderHelper(Node *root){
 	
 	if(root == nullptr)
 	{
@@ -248,7 +250,7 @@ void BinarySearchTree::deleteExceptRoot(Node* rem)
     
 // **Operator overloads**
 
-BinarySearchTree& BinarySearchTree::operator+(std::string word)
+BinarySearchTree& BinarySearchTree::operator+(string word)
 {
 	insert(word);
 	return *this; // returns a reference to the modified tree
