@@ -4,7 +4,7 @@
 	
 	nmake library -- to build "BinarySearchTree.lib"
 
-	nmake test_compile -- to build "test.exe"
+	nmake compile_test -- to build "test.exe"
 
 	nmake wordcouter_compile -- to build "wordcounter.exe"
 
