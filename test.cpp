@@ -97,8 +97,9 @@ int main(int argc, char **argv)
     tree3 = tree3 + "hello";
     tree3 = tree3 + "world";
     str = tree3.inorder();
+	cout << str << endl;
     if (str != string("hello world"))
-    	cerr << "ERROR - test 9 failed (+ operator overload)" << endl;
+		cerr << "ERROR - test 9 failed (+ operator overload)" << endl;
     else
         cout << "Test 9 passed (+ operator overload)" << endl;
         

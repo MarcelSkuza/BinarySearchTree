@@ -1,5 +1,5 @@
 //Author: Marcel Skuza
-//Last modified: 06/04/2019
+//Last modified: 03/01/2019
 //This program is an C++ implementation of Binary Search Tree data structure
 
 
@@ -23,11 +23,13 @@ BinarySearchTree::BinarySearchTree(std::string word)
 }
 
 //Copy tree constructor
+
 BinarySearchTree::BinarySearchTree(const BinarySearchTree &rhs)
 {
 	root = new Node;
 	root = treeCloner(rhs.root);
 }
+
 
 //Vector constructor
 BinarySearchTree::BinarySearchTree(const std::vector<std::string> &words)
@@ -37,14 +39,7 @@ BinarySearchTree::BinarySearchTree(const std::vector<std::string> &words)
 	}
 }
 
-//Destructor
-BinarySearchTree::~BinarySearchTree()
-{
-	destructorHelper(root);
-}
-
-
-// *Constructor helpers*
+// **Constructor helpers**
 
 //Tree constructor helper
 Node* BinarySearchTree::treeCloner(Node* toClone)
@@ -53,13 +48,20 @@ Node* BinarySearchTree::treeCloner(Node* toClone)
 	if(toClone != nullptr){
 		clonedNode = new Node;
 		clonedNode->word = toClone->word;
+		clonedNode->count = toClone->count;
 		clonedNode->left = treeCloner(toClone->left);
 		clonedNode->right = treeCloner(toClone->right);
 	}
 	return clonedNode;
 }
 
-//Destructor helper
+// **Destructors**
+BinarySearchTree::~BinarySearchTree()
+{
+	destructorHelper(root);
+}
+
+// **Destructor helpers**
 void BinarySearchTree::destructorHelper(Node *rem)
 {
 	if(rem->left != nullptr){
@@ -136,7 +138,7 @@ bool BinarySearchTree::existsHelper(std::string word, Node *node)
 
 // *Printing functions*
 
-//Prints words inorder + prints number of times word occures
+//Prints words inorder + prints number of times word occurs
 std::string BinarySearchTree::inorderCount() 
 {
 	std::string words = inorderCountHelper(root);
@@ -230,6 +232,19 @@ std::string BinarySearchTree::postorderHelper(Node *root){
 	}
 	
 }
+
+void BinarySearchTree::deleteExceptRoot(Node* rem)
+{
+	if (rem->left != nullptr) {
+		deleteExceptRoot(rem->left);
+	}
+	if (rem->right != nullptr) {
+		deleteExceptRoot(rem->right);
+	}
+	if (rem->word != root->word) {
+		delete rem;
+	}
+}
     
 // **Operator overloads**
 
@@ -242,29 +257,15 @@ BinarySearchTree& BinarySearchTree::operator+(std::string word)
 
 BinarySearchTree& BinarySearchTree::operator=(const BinarySearchTree &rhs)
 {
+	if (this != &rhs) {
+		destructorHelper(root);
+		root = new Node;
+		root = treeCloner(rhs.root);
+	}
 
-
-	// !FLAWED CODE!
-	/*
-	deleteExceptRoot(root);
-	root->word = "";
-	root = treeCloner(rhs.root);
-	*/
-	
-	return *this; // returns a reference to the modified tree
+	return *this; // returns a reference to the modified tree	
 }
 
-void BinarySearchTree::deleteExceptRoot(Node *rem)
-{
-	if(rem->left != nullptr){
-		deleteExceptRoot(rem->left);
-	}
-	if(rem->right != nullptr){
-		deleteExceptRoot(rem->right);
-	}
-	if(rem->word != root->word){
-		delete rem;
-	}
-}
+
 
 
