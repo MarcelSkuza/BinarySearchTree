@@ -1,7 +1,7 @@
 # Binary Search Tree
 C ++ implementation of binary search tree algorithm. Uses simple word-counting program as an example implementation. 
 ## Makefile
- **Build**/
+ **Build**\
 `nmake library`/
 `nmake compile_test`/
 `nmake wordcouter_compile`/
