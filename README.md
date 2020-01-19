@@ -15,3 +15,7 @@ C ++ implementation of binary search tree algorithm. Uses simple word-counting p
 \
 **Clean built files**\
 `nmake clean`
+
+# To do\
+1. Add tree visualisation\
+2. Allow for custom word input (GUI or file)
