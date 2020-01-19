@@ -14,4 +14,4 @@ C ++ implementation of binary search tree algorithm. Uses simple word-counting p
 `nmake sentences`\
 \
 **Clean built files**\
-`nmake clean`\
+`nmake clean`
