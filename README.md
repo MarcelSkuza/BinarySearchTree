@@ -1,4 +1,4 @@
-# Binary Search Tree
+# Binary search tree
 C ++ implementation of binary search tree algorithm. Uses simple word-counting program as an example implementation. 
 ## Makefile
  **Build**\
